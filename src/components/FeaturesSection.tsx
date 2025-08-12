@@ -32,7 +32,7 @@ const FeaturesSection = () => {
   return (
     <section id="features" className="py-24 bg-background">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in-up">
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient-primary">
             Tại Sao Chọn AI CÔNG?
           </h2>
@@ -45,8 +45,7 @@ const FeaturesSection = () => {
           {features.map((feature, index) => (
             <Card 
               key={index}
-              className="group hover-lift bg-white border-0 shadow-brand hover:shadow-brand-lg animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className="group hover-lift bg-white border-0 shadow-brand hover:shadow-brand-lg"
             >
               <CardContent className="p-8 text-center">
                 <div className={`inline-flex items-center justify-center w-16 h-16 rounded-xl bg-gray-50 ${feature.color} mb-6 group-hover:scale-110 transition-transform duration-300`}>

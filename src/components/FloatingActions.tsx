@@ -28,7 +28,7 @@ const FloatingActions = () => {
         <Button
           size="icon"
           variant="cta"
-          className="w-14 h-14 rounded-full shadow-brand-xl hover:scale-110 animate-bounce-in"
+          className="w-14 h-14 rounded-full shadow-brand-xl hover:scale-110"
           onClick={() => setIsChatbotOpen(true)}
         >
           <Bot className="w-6 h-6" />
@@ -37,8 +37,7 @@ const FloatingActions = () => {
         <Button
           size="icon"
           variant="hero"
-          className="w-14 h-14 rounded-full shadow-brand-xl hover:scale-110 animate-bounce-in"
-          style={{ animationDelay: '0.2s' }}
+          className="w-14 h-14 rounded-full shadow-brand-xl hover:scale-110"
           onClick={handleHotlineClick}
         >
           <Phone className="w-6 h-6" />

@@ -37,7 +37,7 @@ const ServicesSection = () => {
   return (
     <section id="services" className="py-24 gradient-subtle">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16 animate-fade-in-up">
+        <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 text-gradient-primary">
             Khám Phá Dịch Vụ Của Chúng Tôi
           </h2>
@@ -50,8 +50,7 @@ const ServicesSection = () => {
           {services.map((service, index) => (
             <Card 
               key={index} 
-              className="group hover-lift hover-glow ripple border-0 shadow-brand-lg animate-fade-in-up bg-white/80 backdrop-blur-sm"
-              style={{ animationDelay: `${index * 0.2}s` }}
+              className="group hover-lift hover-glow ripple border-0 shadow-brand-lg bg-white/80 backdrop-blur-sm"
             >
               <CardHeader className="text-center pb-6">
                 <div className={`mx-auto mb-4 w-24 h-24 rounded-2xl bg-gradient-to-br ${service.gradient} flex items-center justify-center text-white group-hover:scale-110 transition-transform duration-300`}>

@@ -131,6 +131,20 @@ All colors MUST be HSL.
   html {
     scroll-behavior: smooth;
   }
+  
+  /* Ensure all content is visible by default */
+  * {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  
+  /* Allow animations only for supported browsers */
+  @supports (animation: none) {
+    .animate-on-scroll {
+      opacity: 1;
+      transform: none;
+    }
+  }
 }
 
 @layer components {
@@ -153,19 +167,44 @@ All colors MUST be HSL.
   
   /* Animation Classes */
   .animate-fade-in-up {
-    opacity: 0;
-    transform: translateY(20px);
     animation: fade-in-up 0.6s ease-out forwards;
   }
   
   .animate-scale-in {
-    transform: scale(0.95);
-    opacity: 0;
     animation: scale-in 0.3s ease-out forwards;
   }
   
   .animate-bounce-in {
     animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+  }
+  
+  /* Ensure content is visible by default with no-js fallback */
+  .animate-fade-in-up,
+  .animate-scale-in,
+  .animate-bounce-in {
+    opacity: 1;
+    transform: none;
+  }
+  
+  /* Only apply animation transforms when animations are supported */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-fade-in-up {
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fade-in-up 0.6s ease-out forwards;
+    }
+    
+    .animate-scale-in {
+      opacity: 0;
+      transform: scale(0.95);
+      animation: scale-in 0.3s ease-out forwards;
+    }
+    
+    .animate-bounce-in {
+      opacity: 0;
+      transform: scale(0.3);
+      animation: bounce-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55) forwards;
+    }
   }
   
   /* Hover Effects */
@@ -242,56 +281,52 @@ All colors MUST be HSL.
   }
 }
 
-/* Keyframes */
-@keyframes fade-in-up {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
+/* Improved Animation System */
+@layer utilities {
+  /* Default visible state - ensures content is always visible */
+  .animate-on-scroll {
     opacity: 1;
-    transform: translateY(0);
+    transform: none;
+    transition: all 0.6s ease-out;
   }
-}
-
-@keyframes scale-in {
-  from {
-    opacity: 0;
-    transform: scale(0.95);
+  
+  /* Animation states that only apply when supported */
+  @media (prefers-reduced-motion: no-preference) {
+    .animate-fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    
+    .animate-fade-up.animate-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .animate-scale {
+      opacity: 0;
+      transform: scale(0.9);
+    }
+    
+    .animate-scale.animate-in {
+      opacity: 1;
+      transform: scale(1);
+    }
+    
+    .animate-slide-right {
+      opacity: 0;
+      transform: translateX(-30px);
+    }
+    
+    .animate-slide-right.animate-in {
+      opacity: 1;
+      transform: translateX(0);
+    }
   }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes bounce-in {
-  from {
-    opacity: 0;
-    transform: scale(0.3);
-  }
-  50% {
-    opacity: 1;
-    transform: scale(1.05);
-  }
-  70% {
-    transform: scale(0.9);
-  }
-  to {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-
-@keyframes float {
-  0%, 100% {
-    transform: translateY(0px);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-.animate-float {
-  animation: float 3s ease-in-out infinite;
+  
+  /* Staggered animation delays */
+  .animate-delay-100 { animation-delay: 0.1s; }
+  .animate-delay-200 { animation-delay: 0.2s; }
+  .animate-delay-300 { animation-delay: 0.3s; }
+  .animate-delay-400 { animation-delay: 0.4s; }
+  .animate-delay-500 { animation-delay: 0.5s; }
 }
